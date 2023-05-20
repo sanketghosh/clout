@@ -1,9 +1,19 @@
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
+import users from "../assets/data/users";
+import { UserCard } from "../src/components";
 
 export default function Page() {
+  function renderCard({ item }) {
+    return <UserCard user={item} key={item.id} />;
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Hello</Text>
+      <FlatList
+        data={users}
+        renderItem={renderCard}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 }
@@ -11,7 +21,8 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    padding: 24,
+    padding: 10,
+    paddingTop: 75,
+    backgroundColor: "#fff",
   },
 });
